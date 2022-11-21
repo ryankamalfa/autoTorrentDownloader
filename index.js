@@ -43,8 +43,6 @@ puppeteer.launch({
         torrent.on('done', function () {
           console.log('torrent download finished')
         })
-      }).then(()=>{
-        console.log('finished');
       })
     
     // var torrent = client.addTorrent(`${__dirname}/torrentFiles/${filename}`);
