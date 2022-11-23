@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "async": "^3.2.4",
     "download": "^8.0.0",
+    "handbrake-js": "^6.0.0",
     "node-torrent": "^0.2.2",
     "puppeteer": "^19.2.2",
     "puppeteer-extra": "^3.3.4",
