@@ -81,7 +81,8 @@ puppeteer.launch({
             output: `${__dirname}/videos/${folderName}/${videoFileName}.mp4`,
             preset:'Very Fast 480p30',
             optimize:true,
-            subname:`${srtFileName}`
+            subtitle: "1",
+            "subtitle-burned": 1,
           })
           .on('error', err => {
             // invalid user input, no video found etc
