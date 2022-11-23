@@ -79,7 +79,7 @@ puppeteer.launch({
           hbjs.spawn({ 
             input: `${__dirname}/videos/${folderName}/${videoFileName}`,
             output: `${__dirname}/videos/${folderName}/${videoFileName}.mp4`,
-            preset:'Discord Nitro Medium 5-10 Minutes 720p30',
+            preset:'Very Fast 480p30',
             optimize:true,
             subname:`${srtFileName}`
           })
