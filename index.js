@@ -46,8 +46,8 @@ puppeteer.launch({
                 console.log('torrent folder name',torrent.name);
                 // console.log('total downloaded: ' + torrent.downloaded);
                 // console.log('download speed: ' + torrent.downloadSpeed);
-                // console.log('progress: ' + torrent.progress);
-                // console.log('is done ?',torrent.done);
+                console.log('progress: ' + torrent.progress);
+                console.log('is done ?',torrent.done);
                 if(torrent.done){
                   console.log('is torrent done',torrent.done);
                   
