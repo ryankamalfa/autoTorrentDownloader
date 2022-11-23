@@ -68,8 +68,6 @@ puppeteer.launch({
                   console.log(srtFile.name);
                   torrent.destroy();
                   callback(null,folderName,videoFileName,srtFileName);
-                }else{
-                  callback(null,null,null,null);
                 }
               })
           })
