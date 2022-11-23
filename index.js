@@ -80,7 +80,7 @@ puppeteer.launch({
             input: `${__dirname}/videos/${folderName}/${videoFileName}`,
             output: `${__dirname}/videos/${folderName}/${videoFileName}.mp4`,
             preset:'Very Fast 480p30',
-            optimize:true,
+            subname:srtFileName,
             subtitle: "1",
             "subtitle-burned": 1,
           })
