@@ -80,7 +80,7 @@ puppeteer.launch({
             input: `${__dirname}/videos/${folderName}/${videoFileName}.mp4`,
             output: `${__dirname}/videos/${folderName}/${videoFileName}_encoded.mp4`,
             preset:'Fast 720p30',
-            'srt-file':`${__dirname}/videos/${folderName}/${srtFileName}`,
+            'srt-file':`${__dirname}/videos/${folderName}/Subs/${srtFileName}`,
             'srt-default':1,
             'srt-lang':'eng'
           })
