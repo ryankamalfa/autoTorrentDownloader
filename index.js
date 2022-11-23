@@ -79,8 +79,9 @@ puppeteer.launch({
           hbjs.spawn({ 
             input: `${__dirname}/videos/${folderName}/${videoFileName}`,
             output: `${__dirname}/videos/${folderName}/${videoFileName}.mp4`,
-            preset:'Vimeo YouTube HQ 720p60',
-            optimize:true
+            preset:'Very Fast 720p30',
+            optimize:true,
+            'srt-file':`${__dirname}/videos/${folderName}/Subs/${srtFileName}`
           })
           .on('error', err => {
             // invalid user input, no video found etc
