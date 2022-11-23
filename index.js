@@ -80,7 +80,7 @@ puppeteer.launch({
           // console.log('filenamefilenamefilename',filename);
           hbjs.spawn({ 
             input: `${__dirname}/videos/${folderName}/${videoFileName}`,
-            output: `${__dirname}/videos/${folderName}/${videoFileName.replace}.mp4` 
+            output: `${__dirname}/videos/${folderName}/${videoFileName}.mp4` 
           })
           .on('error', err => {
             // invalid user input, no video found etc
