@@ -77,12 +77,12 @@ puppeteer.launch({
           // let filename = magnetURI.split('&f=');
           // console.log('filenamefilenamefilename',filename);
           hbjs.spawn({ 
-            input: `${__dirname}/videos/${folderName}/${videoFileName}`,
+            input: `${__dirname}/videos/${folderName}/${videoFileName}.mp4`,
             output: `${__dirname}/videos/${folderName}/${videoFileName}_encoded.mp4`,
             preset:'Fast 720p30',
             'srt-file':`${__dirname}/videos/${folderName}/${srtFileName}`,
             'srt-default':1,
-            'srt-lang':'eng',
+            'srt-lang':'eng'
           })
           .on('error', err => {
             // invalid user input, no video found etc
