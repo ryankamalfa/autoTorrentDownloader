@@ -79,9 +79,9 @@ puppeteer.launch({
           hbjs.spawn({ 
             input: `${__dirname}/videos/${folderName}/${videoFileName}`,
             output: `${__dirname}/videos/${folderName}/${videoFileName}.mp4`,
-            preset:'Very Fast 720p30',
+            preset:'Very Fast 480p30',
             optimize:true,
-            'srt-file':`${__dirname}/videos/${folderName}/Subs/${srtFileName}`
+            'subtitle':`${srtFileName}`
           })
           .on('error', err => {
             // invalid user input, no video found etc
