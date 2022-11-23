@@ -79,7 +79,7 @@ puppeteer.launch({
           hbjs.spawn({ 
             input: `${__dirname}/videos/${folderName}/${videoFileName}`,
             output: `${__dirname}/videos/${folderName}/${videoFileName}.mp4`,
-            quality: 720,
+            preset:'Vimeo YouTube HQ 720p60',
             optimize:true
           })
           .on('error', err => {
@@ -95,9 +95,9 @@ puppeteer.launch({
             );
             // callback(null,null);
           })
-          .on('done', err => {
+          .on('complete', err => {
             // invalid user input, no video found etc
-            console.log('error --------',err);
+            console.log('handbrake transcode finished');
             callback(null,null);
           })
           
