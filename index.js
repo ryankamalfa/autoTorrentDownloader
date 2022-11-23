@@ -34,55 +34,55 @@ puppeteer.launch({
         // console.log('Download Completed');
 
       async.waterfall([
-        function(callback){
-          //scrape torrent magnet link
-          let magnetURI = `magnet:?xt=urn:btih:f654623ead40ae3bd290e46f4d76e13135f8f1ab&dn=Poker.Face.2022.PROPER.1080p.WEBRip.x265-RARBG&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2850&tr=udp%3A%2F%2F9.rarbg.to%3A2740&tr=udp%3A%2F%2Ftracker.fatkhoala.org%3A13770&tr=udp%3A%2F%2Ftracker.slowcheetah.org%3A14710`;
-          callback(null,magnetURI);
-        },
-        function(magnetURI,callback){
-          //download torrent content
-          client.add(magnetURI, { path: `${__dirname}/videos` }, function (torrent) {
-            torrent.on('download', function (bytes) {
-                console.log('torrent folder name',torrent.name);
-                // console.log('total downloaded: ' + torrent.downloaded);
-                // console.log('download speed: ' + torrent.downloadSpeed);
-                console.log('progress: ' + torrent.progress);
-                console.log('is done ?',torrent.done);
-                if(torrent.done){
-                  console.log('is torrent done',torrent.done);
+        // function(callback){
+        //   //scrape torrent magnet link
+        //   let magnetURI = `magnet:?xt=urn:btih:f654623ead40ae3bd290e46f4d76e13135f8f1ab&dn=Poker.Face.2022.PROPER.1080p.WEBRip.x265-RARBG&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2850&tr=udp%3A%2F%2F9.rarbg.to%3A2740&tr=udp%3A%2F%2Ftracker.fatkhoala.org%3A13770&tr=udp%3A%2F%2Ftracker.slowcheetah.org%3A14710`;
+        //   callback(null,magnetURI);
+        // },
+        // function(magnetURI,callback){
+        //   //download torrent content
+        //   client.add(magnetURI, { path: `${__dirname}/videos` }, function (torrent) {
+        //     torrent.on('download', function (bytes) {
+        //         console.log('torrent folder name',torrent.name);
+        //         // console.log('total downloaded: ' + torrent.downloaded);
+        //         // console.log('download speed: ' + torrent.downloadSpeed);
+        //         console.log('progress: ' + torrent.progress);
+        //         console.log('is done ?',torrent.done);
+        //         if(torrent.done){
+        //           console.log('is torrent done',torrent.done);
                   
-                  let folderName = torrent.name;
+        //           let folderName = torrent.name;
                   
-                  let videoFile = torrent.files.find(function (file) {
-                    return file.name.endsWith('.mp4')
-                  });
-                  let videoFileName = videoFile.name;
-                  console.log(videoFileName);
+        //           let videoFile = torrent.files.find(function (file) {
+        //             return file.name.endsWith('.mp4')
+        //           });
+        //           let videoFileName = videoFile.name;
+        //           console.log(videoFileName);
 
-                  let srtFile = torrent.files.find(function (file) {
-                    if(file.name.toLowerCase().includes('english') && file.name.endsWith('.srt')){
-                      return file;
-                    }
-                  });
-                  let srtFileName = srtFile.name;
-                  console.log(srtFile.name);
-                  torrent.destroy();
-                  callback(null,folderName,videoFileName,srtFileName);
-                }
-              })
-          })
-        },
+        //           let srtFile = torrent.files.find(function (file) {
+        //             if(file.name.toLowerCase().includes('english') && file.name.endsWith('.srt')){
+        //               return file;
+        //             }
+        //           });
+        //           let srtFileName = srtFile.name;
+        //           console.log(srtFile.name);
+        //           torrent.destroy();
+        //           callback(null,folderName,videoFileName,srtFileName);
+        //         }
+        //       })
+        //   })
+        // },
         function(folderName,videoFileName,srtFileName,callback){
           //process with handbrake
           // let filename = magnetURI.split('&f=');
           // console.log('filenamefilenamefilename',filename);
           hbjs.spawn({ 
             input: `${__dirname}/videos/${folderName}/${videoFileName}`,
-            output: `${__dirname}/videos/${folderName}/${videoFileName}.mp4`,
-            preset:'Very Fast 480p30',
-            subname:srtFileName,
-            subtitle: "1",
-            "subtitle-burned": 1,
+            output: `${__dirname}/videos/${folderName}/${videoFileName}_encoded.mp4`,
+            preset:'Fast 720p30',
+            'srt-file':`${__dirname}/videos/${folderName}/${srtFileName}`,
+            'srt-default':1,
+            'srt-lang':'eng',
           })
           .on('error', err => {
             // invalid user input, no video found etc
